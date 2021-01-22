@@ -51,12 +51,13 @@ def buy_b():
         money == money - 65
         plant_points == plant_points + 10
         heart_points == heart_points + 2
+        your_plants.append(p_camposportoanum)
     else:
         print("You have passed on this deal.")
 def buy_adventures():
     buying_scenario = [buy_a, buy_b]
     print("Here is your buying adventure:\n\n")
-    random.choice(buying_scenario)
+    random.choice(buying_scenario)()
 def trade_adventures():
     
 
