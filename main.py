@@ -42,18 +42,20 @@ def intro():
 intro()
 def buy_adventures():
     
-    buy_a = print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n Do you go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself?")
+    def buy_a(): 
+        print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n Do you go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself?")
 
-    buy_b = print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
-    decision = input("[D]eal or [P]ass? >").upper()
-    if decision.startswith("D"):
-        print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
-        money == money - 65
-        plant_points == plant_points + 10
-        heart_points == heart_points + 2
-    else:
-        print("You have passed on this deal.")
-    buying_choices = [buy_a, buy_b]
+    def buy_b():
+        print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
+        decision = input("[D]eal or [P]ass? >").upper()
+        if decision.startswith("D"):
+            print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
+            money == money - 65
+            plant_points == plant_points + 10
+            heart_points == heart_points + 2
+        else:
+            print("You have passed on this deal.")
+    buying_choices = [buy_a(), buy_b()]
     print("Here is your buying adventure:\n\n", random.choice(buying_choices))
 def trade_adventures():
     
