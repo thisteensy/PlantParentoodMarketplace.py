@@ -12,11 +12,7 @@ decision = ""
 p_camposportoanum = {"name": "philodendron camposportoanum", "cost": 65, "worth": 120}
 p_pink_princess = {"name": "philodendron pink princess", "cost": 30, "worth": 200}
 #rattlesnake_calathea, p_brasil, a_vittarifolium, a_forgetii, p_jungle_boogie, p_gloriosum, s_rayii, s_variegatum_albo, s_variegatum_aurea, pony_tail_palm, h_rotundifolia, h_krimson_queen, p_pedatum, silver_brake_fern, pothos_manjula, p_micans, h_chelsea, h_obovata, maidenhair_fern, scindapsus_pictus, epipremnum_pinatum_cebu_blue, tradescantia_zebrina, variegated_soh, h_curtisii, a_warocqueanum
-plants = [p_pink_princess, p_camposportoanum]
-print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
-print()
-print("Your goal is to build a beautiful collection of healthy plants to crate your indoor jungle. \nTo do so you will start with $1000 and 10 heart points. \nYou will need to reach 500 plant points to win. \nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \nIf you lose all of your heart points, you give up collecting and \nlose the game.")
-print()
+# plants = [p_pink_princess, p_camposportoanum]
 def score():
     print(f"Current score: You have ${money}, {heart_points} heartpoints and {plant_points} plant points.")
 def jungle():
@@ -27,45 +23,41 @@ def jungle():
     if len(your_plants) == 0:
         print()
         print ("You don't have any plants yet, sad.")
-def buy_adventures():
 
-    def buy_a():
-        print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n Do you go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself?")  
-
-    def buy_b(): 
-        print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
-        decision = input("[D]eal or [P]ass? >").upper()
-        if decision.startswith("D"):
-            print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
-            money == money - 65
-            plant_points == plant_points + 10
-            heart_points == heart_points + 2
-        else:
-            print("You have passed on this deal.")
-    buying_choices = [buy_a(), buy_b()]
-    print("Here is your buying adventure:\n\n", random.choice(buying_choices)
+# def buy_adventures():
     
+#     buy_a = print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n Do you go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself?")
+
+#     buy_b = print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
+#     decision = input("[D]eal or [P]ass? >").upper()
+#     if decision.startswith("D"):
+#         print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
+#         money == money - 65
+#         plant_points == plant_points + 10
+#         heart_points == heart_points + 2
+#     else:
+#         print("You have passed on this deal.")
+#     buying_choices = [buy_a, buy_b]
+#     print("Here is your buying adventure:\n\n", random.choice(buying_choices)
 # def trade_adventures():
-#     def trade_a(): 
-#         print ("Someone you've never seen before in your local plant group has posted a message saying that they are looking for free plants to help grow their collection. You have some common plants you don't love and are starting to neglect. You consider offering him your neglected plants. (This could improve your heart points, but it decreases your plant points.)")
-#         decision = input("[D]eal or [P]ass? >").upper()
-#         if decision.startswith("D"):
-#             for plant in your_plants:
-#                 if plant["worth"]<21:
-#                     remove(plant)
+    
 
 
-    # def trade_b():
-    #     print ("something something something")
+#     def trade_b():
+#         print ("something something something")
     
-    # trading_choices = [trade_a(), trade_b()]
-    # print("Here is your trading adventure:\n\n", random.choice(trading_choices))
+#     trading_choices = [trade_a(), trade_b()]
+#     print("Here is your trading adventure:\n\n", random.choice(trading_choices))
     
-    # print()
-    # print(decision)
-    # print()
+#     print()
+#     print(decision)
+#     print()
 
 def intro():
+    print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
+    print()
+    print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \nTo do so you will start with $1000 and 10 heart points. \nYou will need to reach 500 plant points to win. \nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \nIf you lose all of your heart points, you give up collecting and \nlose the game.")
+    print()
     decision = input("Are you ready to get planty? > ").upper()
     if decision.startswith("N"):
         print("That's ridculous, but have a nice day, anyway.")
