@@ -51,11 +51,14 @@ def buy_a():
     global heart_points
     global plant_points
     print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n You could go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself!")
+    print()
     decision = input("[D]eal or [P]ass? >").upper()
+    print()
     if decision.startswith("D"):
         covid = random.randint(1, 3)
         if covid == 1 or covid == 2:
             print ("You caught COVID-19 going from store to store. You were unable to care for your plants properly and it costs you 50% of you plant points and you lose 5 heart points, and $500, but one philodendron pink princess worth $200 was added to your collection")
+            print()
             #turn this into a function :)
             #something like
             #def update_score (hp, pp, profit_loss, bst)
@@ -70,52 +73,65 @@ def buy_a():
             your_plants.append(p_pink_princess)
         else:
             print ("You got lucky! You got 5 philodendron pink princesses, sold 4 of them for $200 each and kept one for your collection! You gain 10 plant points, but no heart points, since you were lucky to evade the virus.")
+            print()
             money = money + 800
             plant_points = plant_points + 10
             your_plants.append(p_pink_princess)
     else:
         print("You have passed on this deal.")
+        print()
 
 def buy_b():
     global money
     global heart_points
     global plant_points
     print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
+    print()
     decision = input("[D]eal or [P]ass? >").upper()
+    print()
     if decision.startswith("D"):
         print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
+        print()
         money = money - 65
         plant_points = plant_points + 10
         heart_points = heart_points + 2
         your_plants.append(p_camposportoanum)
     else:
         print("You have passed on this deal.")
+        print()
 def buy_c():
     global money
     global heart_points
     global plant_points
     print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. Poeple who have that plant to sell can offer it to you. You state that you're looking for a philodendron gloriosum. A collector you know from your local B/S/T group has a rooted node of this plant with one growth point. He is offering it to you for $40.")
+    print()
     decision = input("[D]eal or [P]ass? >").upper()
+    print()
     if decision.startswith("D"):
         rot = random.randint(1, 3)
         if rot == 1 or rot == 2:
             print("You bought the rooted philodendron node for $40. It grew well and is a beautiful healthy plant now worth $200")
+            print()
             plant_points = plant_points + 10
             money = money - 40
             heart_points = heart_points + 2
             your_plants.append(p_gloriosum)
         elif rot == 3:
             print("You bought the node, but were unable to get it to grow and it evenually rotted. You are out the $40, and the failure was discouraging, -2 heart points.")
+            print()
             money = money - 40
             heart_points = heart_points - 2
         else:
             print("You passed on this deal.")
+            print()
 def buy_d():
     global money
     global heart_points
     global plant_points
     print("Your friend invites you to join her at a sale at a local nursery. They don't have anything very unusual but prices are very good and there are three plants you like for $8 each: a pteris fern, a tradescantia zebrina and an angel wing begonia.")
+    print()
     decision = input("[D]eal or [P]ass? >").upper()
+    print()
     if decision.startswith("D"):
         print("Congratulations you bought 3 plants, a pteris fern, a tradescantia zebrina and an angel wing begonia. You gained 6 plant points and 2 heart points, because shopping with a friend is always best.")
         print()
@@ -127,6 +143,7 @@ def buy_d():
         your_plants.append(b_angel_wing)
     else:
         print("You passed on this deal.")
+        print()
 
 def buy_adventures():
     buying_scenario = [buy_a, buy_b, buy_c, buy_d]
