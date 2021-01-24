@@ -21,14 +21,13 @@ t_zebrina = {"name": "tradescantia zebrina", "cost": 8, "worth": 10}
 def score():
     time.sleep(2)
     print(f"Current score: You have ${money}, {heart_points} heartpoints and {plant_points} plant points.")
-    time.sleep(2)
+    print()
 def jungle():
     time.sleep(2)
     print("Here are the plants you have collected and their value: ")
     for plant in your_plants:
         print()
         print (plant["name"], "$" + str(plant["worth"]))
-        time.sleep(2)
     if len(your_plants) == 0:
         print()
         print ("You don't have any plants yet, sad.")
@@ -40,7 +39,7 @@ def intro():
     print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
     time.sleep(2)
     print()
-    print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \nTo do so you will start with $1000 and 10 heart points. \nYou will need to reach 500 plant points to win. \nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \nIf you lose all of your heart points, you give up collecting and \nlose the game.")
+    print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \n\nTo do so you will start with $1000 and 10 heart points. \n\nYou will need to reach 500 plant points to win. \n\nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \n\nIf you lose all of your heart points, you give up collecting and \nlose the game.")
     time.sleep(5)
     print()
     decision = input("Are you ready to get planty? > ").upper()
@@ -52,7 +51,6 @@ def intro():
         print()
         print("Great! Lets go!")
         print()
-        time.sleep(2)
 intro()
 def pass_on_deal():
     print("You have passed on this deal.")
@@ -113,7 +111,7 @@ def buy_c():
     global money
     global heart_points
     global plant_points
-    print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. Poeple who have that plant to sell can offer it to you. You state that you're looking for a philodendron gloriosum. A collector you know from your local B/S/T group has a rooted node of this plant with one growth point. He is offering it to you for $40.")
+    print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. People who have that plant to sell can offer it to you. You state that you're looking for a philodendron gloriosum. A collector you know from your local B/S/T group has a rooted node of this plant with one growth point. He is offering it to you for $40.")
     print()
     time.sleep(2)
     decision = input("[D]eal or [P]ass? >").upper()
@@ -192,6 +190,8 @@ while True:
     else:
         print("What would you like to do? [B]uy, [S]ell, [T]rade or [Q]uit")
         decision = input("> ").upper()
+        time.sleep(2)
+        print()
         if decision.startswith("Q"):
             print()
             print("Thank you for visiting. Have a nice day.")
