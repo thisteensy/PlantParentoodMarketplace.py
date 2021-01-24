@@ -19,9 +19,11 @@ t_zebrina = {"name": "tradescantia zebrina", "cost": 8, "worth": 10}
 #rattlesnake_calathea, p_brasil, a_vittarifolium, a_forgetii, p_jungle_boogie, p_gloriosum, s_rayii, s_variegatum_albo, s_variegatum_aurea, pony_tail_palm, h_rotundifolia, h_krimson_queen, p_pedatum, silver_brake_fern, pothos_manjula, p_micans, h_chelsea, h_obovata, maidenhair_fern, scindapsus_pictus, epipremnum_pinatum_cebu_blue, tradescantia_zebrina, variegated_soh, h_curtisii, a_warocqueanum
 # plants = [p_pink_princess, p_camposportoanum]
 def score():
+    time.sleep(2)
     print(f"Current score: You have ${money}, {heart_points} heartpoints and {plant_points} plant points.")
     time.sleep(2)
 def jungle():
+    time.sleep(2)
     print("Here are the plants you have collected and their value: ")
     for plant in your_plants:
         print()
@@ -52,6 +54,10 @@ def intro():
         print()
         time.sleep(2)
 intro()
+def pass_on_deal():
+    print("You have passed on this deal.")
+    print()
+    time.sleep(2)
 def buy_a():
     #make this into a function called globalize_score :)
     global money
@@ -62,20 +68,13 @@ def buy_a():
     print()
     decision = input("[D]eal or [P]ass? >").upper()
     print()
+    time.sleep(3)
     if decision.startswith("D"):
         covid = random.randint(1, 3)
         if covid == 1 or covid == 2:
             print ("You caught COVID-19 going from store to store. You were unable to care for your plants properly, this costs you 50% of your plant points and 5 heart points. You spent $500 and all but one of the pink princesses died, because they were overwatered at the store. You managed to save on philodendron pink princess worth $200 and it was added to your collection.")
             print()
             time.sleep(5)
-            #turn this into a function :)
-            #something like
-            #def update_score (hp, pp, profit_loss, bst)
-            #hp is heart points lost or gained
-            #pp is plant points lost or gained
-            #profit_loss is how much you paid or received
-            #bst is which plant you bought sold or traded
-
             money = money - 500
             plant_points = plant_points/2
             heart_points = heart_points - 5
@@ -88,35 +87,38 @@ def buy_a():
             plant_points = plant_points + 10
             your_plants.append(p_pink_princess)
     else:
-        print("You have passed on this deal.")
-        print()
+        pass_on_deal()
 
 def buy_b():
     global money
     global heart_points
     global plant_points
     print("A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful " + p_camposportoanum["name"] + " with many leaves and air roots for $" + str(p_camposportoanum["cost"]) + ". This plant is easily worth $" + str(p_camposportoanum["worth"]) + ". It is an amazing deal, but you are not allowed to resell this plant.")
+    time.sleep(2)
     print()
     decision = input("[D]eal or [P]ass? >").upper()
     print()
+    time.sleep(2)
     if decision.startswith("D"):
         print(f"Excellent! You have bought a", p_camposportoanum["name"], "worth $",p_camposportoanum["worth"], "for $",p_camposportoanum["cost"])
         print()
+        time.sleep(2)
         money = money - 65
         plant_points = plant_points + 10
         heart_points = heart_points + 2
         your_plants.append(p_camposportoanum)
     else:
-        print("You have passed on this deal.")
-        print()
+        pass_on_deal()
 def buy_c():
     global money
     global heart_points
     global plant_points
     print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. Poeple who have that plant to sell can offer it to you. You state that you're looking for a philodendron gloriosum. A collector you know from your local B/S/T group has a rooted node of this plant with one growth point. He is offering it to you for $40.")
     print()
+    time.sleep(2)
     decision = input("[D]eal or [P]ass? >").upper()
     print()
+    time.sleep(2)
     if decision.startswith("D"):
         rot = random.randint(1, 3)
         if rot == 1 or rot == 2:
@@ -132,16 +134,17 @@ def buy_c():
             money = money - 40
             heart_points = heart_points - 2
         else:
-            print("You passed on this deal.")
-            print()
+            pass_on_deal()
 def buy_d():
     global money
     global heart_points
     global plant_points
     print("Your friend invites you to join her at a sale at a local nursery. They don't have anything very unusual but prices are very good and there are three plants you like for $8 each: a pteris fern, a tradescantia zebrina and an angel wing begonia.")
     print()
+    time.sleep(2)
     decision = input("[D]eal or [P]ass? >").upper()
     print()
+    time.sleep(2)
     if decision.startswith("D"):
         print("Congratulations you bought 3 plants, a pteris fern, a tradescantia zebrina and an angel wing begonia. You gained 6 plant points and 2 heart points, because shopping with a friend is always best.")
         print()
@@ -152,8 +155,7 @@ def buy_d():
         your_plants.append(t_zebrina)
         your_plants.append(b_angel_wing)
     else:
-        print("You passed on this deal.")
-        print()
+        pass_on_deal()
 
 def buy_adventures():
     buying_scenario = [buy_a, buy_b, buy_c, buy_d]
