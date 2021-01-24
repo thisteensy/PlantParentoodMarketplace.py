@@ -57,7 +57,7 @@ def buy_a():
     if decision.startswith("D"):
         covid = random.randint(1, 3)
         if covid == 1 or covid == 2:
-            print ("You caught COVID-19 going from store to store. You were unable to care for your plants properly and it costs you 50% of you plant points and you lose 5 heart points, and $500, but one philodendron pink princess worth $200 was added to your collection")
+            print ("You caught COVID-19 going from store to store. You were unable to care for your plants properly, this costs you 50% of your plant points and 5 heart points. You spent $500 and all but one of the pink princesses died, because they were overwatered at the store. You managed to save on philodendron pink princess worth $200 and it was added to your collection.")
             print()
             #turn this into a function :)
             #something like
