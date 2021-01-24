@@ -2,7 +2,7 @@
 import random
 #create a list of possible plants
 #create dictionaries of plants, what they cost and what they are worth
-
+import time
 
 money = 1000
 heart_points = 10
@@ -20,23 +20,29 @@ t_zebrina = {"name": "tradescantia zebrina", "cost": 8, "worth": 10}
 # plants = [p_pink_princess, p_camposportoanum]
 def score():
     print(f"Current score: You have ${money}, {heart_points} heartpoints and {plant_points} plant points.")
+    time.sleep(2)
 def jungle():
     print("Here are the plants you have collected and their value: ")
     for plant in your_plants:
         print()
         print (plant["name"], "$" + str(plant["worth"]))
+        time.sleep(2)
     if len(your_plants) == 0:
         print()
         print ("You don't have any plants yet, sad.")
+        time.sleep(2)
 
 
 
 def intro():
     print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
+    time.sleep(2)
     print()
     print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \nTo do so you will start with $1000 and 10 heart points. \nYou will need to reach 500 plant points to win. \nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \nIf you lose all of your heart points, you give up collecting and \nlose the game.")
+    time.sleep(5)
     print()
     decision = input("Are you ready to get planty? > ").upper()
+    time.sleep(2)
     if decision.startswith("N"):
         print("That's ridculous, but have a nice day, anyway.")
         
@@ -44,6 +50,7 @@ def intro():
         print()
         print("Great! Lets go!")
         print()
+        time.sleep(2)
 intro()
 def buy_a():
     #make this into a function called globalize_score :)
@@ -51,6 +58,7 @@ def buy_a():
     global heart_points
     global plant_points
     print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of " + p_pink_princess["name"] + "for $" + str(p_pink_princess ["cost"]) + "at Home Depots all over your metro area. The pandemic continues to rage.\n You could go to as many stores as possible and buy every plant you see so that you can re-sell them for $" + str(p_pink_princess["worth"]) + " each and keep one for yourself!")
+    time.sleep(2)
     print()
     decision = input("[D]eal or [P]ass? >").upper()
     print()
@@ -59,6 +67,7 @@ def buy_a():
         if covid == 1 or covid == 2:
             print ("You caught COVID-19 going from store to store. You were unable to care for your plants properly, this costs you 50% of your plant points and 5 heart points. You spent $500 and all but one of the pink princesses died, because they were overwatered at the store. You managed to save on philodendron pink princess worth $200 and it was added to your collection.")
             print()
+            time.sleep(5)
             #turn this into a function :)
             #something like
             #def update_score (hp, pp, profit_loss, bst)
@@ -74,6 +83,7 @@ def buy_a():
         else:
             print ("You got lucky! You got 5 philodendron pink princesses, sold 4 of them for $200 each and kept one for your collection! You gain 10 plant points, but no heart points, since you were lucky to evade the virus.")
             print()
+            time.sleep(2)
             money = money + 800
             plant_points = plant_points + 10
             your_plants.append(p_pink_princess)
