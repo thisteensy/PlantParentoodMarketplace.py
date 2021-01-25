@@ -198,10 +198,18 @@ def buy_adventures():
     print("Here is your buying adventure:\n\n")
     random.choice(buying_scenario)()
 def trade_adventures():
-    trading_choices = [trade_a(), trade_b()]
-    print("Here is your trading adventure:\n\n", random.choice(trading_choices))
+    if len(your_plants) == 0:
+        print("You have nothing to trade. Go buy something!")
+    else:
+        trading_scenario = [trade_a(), trade_b()]
+        print("Here is your trading adventure:\n\n")
+        print()
+        random.choice(trading_scenario)()
 def trade_a():
-    pass
+    print("Trade time! Someone has cuttings of a Monstera Borsagiana Albo Variegata for trade. They are worth $150. They are looking for rare hoyas, philodendrons or anthuriums. If you have one of these you offer a trade.")
+    offer = input("What would you like to offer? ").lower()
+    if offer in your_plants:
+        print ("you can trade that plant")
 
 def trade_b():
     pass
