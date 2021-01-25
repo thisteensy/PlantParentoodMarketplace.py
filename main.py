@@ -201,7 +201,7 @@ def trade_adventures():
     if len(your_plants) == 0:
         print("You have nothing to trade. Go buy something!")
     else:
-        trading_scenario = [trade_a(), trade_b()]
+        trading_scenario = [trade_a, trade_b]
         print("Here is your trading adventure:\n\n")
         print()
         random.choice(trading_scenario)()
