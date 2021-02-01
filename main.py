@@ -10,6 +10,10 @@ plant_points = 0
 your_plants = {}
 decision = ""
 available_plants = {"philodendron camposportoanum":{"name": "philodendron camposportoanum", "cost": 65, "worth": 120},"philodendron pink princess": {"name": "philodendron pink princess", "cost": 30, "worth": 200}, "philodendron gloriosum": {"name": "philodendron gloriosum", "cost": 40, "worth": 200}, "angel wing begonia": {"name": "angel wing begonia", "cost": 8, "worth": 12}, "pteris fern": {"name": "pteris fern", "cost": 8, "worth": 10}, "tradescantia zebrina": {"name": "tradescantia zebrina", "cost": 8, "worth": 10}, "philodendron Florida ghost": {"name": "philodendron Florida ghost", "cost": 35, "worth": 180}, "philodendron gigas": {"name": "philodendron gigas", "cost": 150, "worth": 200}}
+def random_trade(priciness):
+    list_plants = list(priciness)
+    random_plant = random.choice(list_plants)
+    return random_plant
 #pre nested dictionary work is below
 # p_camposportoanum = {"name": "philodendron camposportoanum", "cost": 65, "worth": 120}
 # p_pink_princess = {"name": "philodendron pink princess", "cost": 30, "worth": 200}
@@ -35,16 +39,31 @@ def jungle():
         time.sleep(1)
     else:
         for plant, plant_data in your_plants.items():
-            print(plant_data["name"], "$",plant_data["worth"])    
-def list_plants():
-    for plant, plant_data in your_plants.items():
-        plants_fs = {}
-        num_plant = 1
-        name = plant_data["name"]
-        worth = str(plant_data["worth"])
-        print(f"{num_plant}. {name} ${worth}")
-        plants_fs[num_plant] = name, worth
+            print(f"{plant_data['name']} ${plant_data['worth']}")    
+def list_plants(plants):
+    plants_fs = {}
+    num_plant = 1
+    for plant, plant_data in plants.items():
+        plants_fs[num_plant] = plant_data
         num_plant = num_plant + 1
+    return plants_fs
+def sort_plants_by_worth(plants):
+    cheap_plants = {}
+    moderate_plants = {}
+    pricey_plants = {}
+    ridiculous_plants = {}
+    for plant, plant_data in plants.items():
+        if plant_data["worth"] < 50:
+            cheap_plants[plant] = plant_data
+        elif plant_data["worth"] >= 50 and plant_data["worth"] < 100:
+            moderate_plants[plant] = plant_data
+        elif plant_data["worth"] >= 100 and plant_data["worth"] < 150:
+            pricey_plants[plant] = plant_data
+        elif plant_data["worth"] >= 150:
+            ridiculous_plants[plant] = plant_data
+    return cheap_plants, moderate_plants, pricey_plants, ridiculous_plants
+
+
 
 
 def intro():
@@ -211,10 +230,30 @@ def trade_adventures():
     if len(your_plants) == 0:
         print("You have nothing to trade. Go buy something!")
     else:
-        list_plants()
+        listed_plants = list_plants(your_plants)
+        for number, info in listed_plants.items():
+            print(f"{number} {info['name']} worth ${info['worth']}")
         print()
-        your_offer = input("Choose a plant to offer for trade:\n\n")
-        if plants_fs 
+        your_offer = int(input("Choose a plant to offer for trade:\n\n"))
+        print (f"You offered {listed_plants[your_offer]['name']} worth ${listed_plants[your_offer]['worth']}")
+    cheap, moderate, pricey, ridiculous = sort_plants_by_worth(available_plants)
+    if listed_plants[your_offer]["worth"] < 50:
+        trade = random_trade(cheap)
+    elif listed_plants[your_offer]["worth"] >= 50 and listed_plants[your_offer]["worth"] < 100:
+        trade = random_trade(moderate)
+    elif listed_plants[your_offer]["worth"] >= 100 and listed_plants[your_offer]["worth"] < 150:
+        trade = random_trade(pricey)
+    elif listed_plants[your_offer]["worth"] >= 150:
+        trade = random_trade(ridiculous)
+    print (f"Someone is offering you a/an {trade} worth ${trade['worth']}")
+    
+    print()
+    decision = input("[D]eal or [P]ass? >").upper()
+    if decision.startswith("D"):
+        print (f"You traded your {listed_plants[your_offer]['name']} worth ${listed_plants[your_offer]['worth']}, for a ")
+    elif decision.startswith("P"):
+        pass_on_deal()
+
 def sell_adventures():
     pass
 
