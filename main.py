@@ -56,7 +56,54 @@ def sort_plants_by_worth(plants):
         elif plant_data["worth"] >= 150:
             ridiculous_plants[plant] = plant_data
     return cheap_plants, moderate_plants, pricey_plants, ridiculous_plants
-#the intro
+def reserve_checker(base, lower_limit):
+    pass
+    
+
+#function that runs the mechanics of the auction
+def auction(base, lower_limit):
+    number_of_bids = [1, 5, 7, 9, 10, 12, 14]
+    length_of_auction = random.choice(number_of_bids)
+    bids = 0
+    reserve_met = False
+    while bids < length_of_auction:
+        bid_increase = [5, 10]
+        bid_timer = [1,2]
+        print("...")
+        print()
+        time.sleep(random.choice(bid_timer))
+        print (base)
+        print()
+        base = base + random.choice(bid_increase)
+        while reserve_met == False:
+            if base >= lower_limit:
+                print("The reserve has been met. This plant will sell.")
+                reserve_met = True
+            else:
+                break
+        bids += 1
+        print ("Going once...")
+        time.sleep(2)
+        print ()
+        print ("Going twice...")
+        time.sleep(2)
+        print ()
+        print ("SOLD")
+        time.sleep(2)
+        print ()
+    print("The auction has ended.")
+    print()    
+    if base < lower_limit:
+        print("The reserv was not met. This plant does not sell.")
+    elif base >= lower_limit:
+        print(f"Your plant has sold for {base}. Your cash increases and your plant points decrease.")
+    return base
+
+
+
+        
+
+#the silly intro
 def intro():
     print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
     time.sleep(1)
@@ -64,7 +111,7 @@ def intro():
     print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \n\nTo do so you will start with $1000 and 10 heart points. \n\nYou will need to reach 500 plant points to win. \n\nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \n\nIf you lose all of your heart points, you give up collecting and \nlose the game.")
     time.sleep(3)
     print()
-    decision = input("Are you ready to get planty? > ").upper()
+    decision = input("Are you ready to make a jungle? > ").upper()
     time.sleep(1)
     if decision.startswith("N"):
         print("That's ridculous, but have a nice day, anyway.")
@@ -73,20 +120,20 @@ def intro():
         print()
         print("Great! Lets go!")
         print()
-intro()
+#function pass on any given deal
 def pass_on_deal():
     print("You have passed on this deal.")
     print()
     time.sleep(1)
+#the next functional are all buying scenarios and are the bulk of the text for the game
 def buy_a():
-    #make this into a function called globalize_score :)
     global money
     global heart_points
     global plant_points
     print ("You see a post in your local houseplant lovers group that Costa Farms has released a batch of philodendron pink princesses for $30 at Home Depots all over your metro area. The pandemic continues to rage.\n You could go to as many stores as possible and buy every plant you see so that you can re-sell them for $200 each and keep one for yourself!")
     time.sleep(1)
     print()
-    decision = input("[D]eal or [P]ass? >").upper()
+    decision = input("[D]eal or [P]ass? > ").upper()
     print()
     time.sleep(1)
     if decision.startswith("D"):
@@ -96,7 +143,7 @@ def buy_a():
             print()
             time.sleep(3)
             money = money - 500
-            plant_points = plant_points/2
+            plant_points = int(plant_points/2)
             heart_points = heart_points - 5
             your_plants["philodendron pink princess"]= available_plants["philodendron pink princess"]
         else:
@@ -108,7 +155,6 @@ def buy_a():
             your_plants["philodendron pink princess"]= available_plants["philodendron pink princess"]
     else:
         pass_on_deal()
-
 def buy_b():
     global money
     global heart_points
@@ -116,7 +162,7 @@ def buy_b():
     print("Instagram Sale! A plant seller you know from Instagram is having a sale. You know her plants are healthy and well cared for, and her prices are reasonable, but her plants tend to be hard to find and therefore more expensive. She has a beautiful philodendron camposportoanum with many leaves and air roots for $65. This plant is easily worth $120. It is an amazing deal, but you are not allowed to resell this plant.")
     time.sleep(1)
     print()
-    decision = input("[D]eal or [P]ass? >").upper()
+    decision = input("[D]eal or [P]ass? > ").upper()
     print()
     time.sleep(1)
     if decision.startswith("D"):
@@ -136,7 +182,7 @@ def buy_c():
     print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. People who have that plant to sell can offer it to you. You state that you're looking for a philodendron gloriosum. A collector you know from your local B/S/T group has a rooted node of this plant with one growth point. He is offering it to you for $40.")
     print()
     time.sleep(1)
-    decision = input("[D]eal or [P]ass? >").upper()
+    decision = input("[D]eal or [P]ass? > ").upper()
     print()
     time.sleep(1)
     if decision.startswith("D"):
@@ -164,7 +210,7 @@ def buy_d():
     print("PLANT SALE! Your friend invites you to join her at a sale at a local nursery. They don't have anything very unusual but prices are very good and there are three plants you like for $8 each: a pteris fern, a tradescantia zebrina and an angel wing begonia.")
     print()
     time.sleep(1)
-    decision = input("[D]eal or [P]ass? >").upper()
+    decision = input("[D]eal or [P]ass? > ").upper()
     print()
     time.sleep(1)
     if decision.startswith("D"):
@@ -186,7 +232,7 @@ def buy_e():
     print("***PURGE ALERT*** Someone you know to be an accomplished grower is going to host a purge on your local Rare and Tropical Plants BST group. They list several young plants and rooted cuttings that draw a large crowd. Competition is likely to be fierce. You may participate in this purge, but beware of the risks of participating in a fevered event like this. Set yourself a budget and don't buy anything over your budget. One of the rules of this purge is that you're not allowed to back out if you speak for a plant.")
     print()
     time.sleep(1)
-    decision = input("[D]eal or [P]ass? >").upper()
+    decision = input("[D]eal or [P]ass? > ").upper()
     print()
     time.sleep(1)
     if decision.startswith("D"):
@@ -213,10 +259,12 @@ def buy_e():
             time.sleep(1)
     else:
         pass_on_deal()
+#this function calls for a random buying scenario
 def buy_adventures():
     buying_scenario = [buy_a, buy_b, buy_c, buy_d, buy_e]
     print("Here is your buying adventure:\n\n")
     random.choice(buying_scenario)()
+#this function handles the very complicated trading mechanics and probably should have been broken out into more functions
 def trade_adventures():
     global heart_points
     global money
@@ -271,45 +319,86 @@ def trade_adventures():
         print()
 
 def sell_adventures():
-    pass
-
-while True:
-    score()
-    jungle()
-    print()
-    print("Any time you want to see this information type 1 for your score or 2 for plant list.")
-    print()
-    if plant_points > 49:
-        print ("Congratulations, you have a beautiful plant collection and you won the game and at life!! Now go relax in your indoor jungle!")
-        break
-    if heart_points < 1:
-        print ("The trials of the plant parenthood have just been too much for you. You have given up your collecting adventure and you have lost the game.")
-        break
-    if money < 1 and plant_points < 20:
-        print ("You have run out of money and have no way to get more. Your plant collecting adventures are over and you have lost the game.")
-        break
+    global heart_points
+    global money
+    global plant_points
+    if len(your_plants) == 0:
+        print("You have nothing to sell. Go buy something!")
     else:
-        print("What would you like to do? [B]uy, [S]ell, [T]rade or [Q]uit")
-        decision = input("> ").upper()
-        time.sleep(2)
+        listed_plants = list_plants(your_plants)
+        for number, info in listed_plants.items():
+            print(f"{number} {info['name']} worth ${info['worth']}")
         print()
-        if decision.startswith("Q"):
+        your_offer = int(input("Choose a plant by number to offer for sale.\nIf you choose a more valuable plant you may choose offer it in an auction: > "))
+        print()
+        print (f"You want to sell your {listed_plants[your_offer]['name']} worth ${listed_plants[your_offer]['worth']}")
+        print()
+        if listed_plants[your_offer]['worth'] >= 75:
+            auction_decision = input("Would you like to auction? Y/N > ").upper()
             print()
-            print("Thank you for visiting. Have a nice day.")
-            break
-        elif decision.startswith("B"):
-            buy_adventures()
-        elif decision.startswith("S"):
-            sell_adventures()
-        elif decision.startswith("T"):
-            trade_adventures()
-        elif decision == "1":
-            score()
-            print()
-        elif decision == "2":
-            jungle()
-            print()
+            if auction_decision == "Y":
+                opening_bid = int(listed_plants[your_offer]['worth'] * 0.80)
+                reserve = listed_plants[your_offer]['worth']
+                print()
+                print(f"The auction starts with an opening bid of ${opening_bid} and a reserve of ${reserve}.")
+                print()
+                time.sleep(1)
+                print ("Bidding starts.")
+                time.sleep(1)
+                sale_price = auction(opening_bid, reserve)
+                money += sale_price
+                plant_points -= 2
+                del(your_plants[listed_plants[your_offer]["name"]])
+            else:
+                print (f"You sold your {listed_plants[your_offer]['name']}for ${listed_plants[your_offer]['worth']}")
         else:
+            print (f"You sold your {listed_plants[your_offer]['name']}for ${listed_plants[your_offer]['worth']}")
+
+
+                
+
+        
+#this is the main game function. it runs the game.
+def play_game():
+    intro()
+    while True:
+        score()
+        jungle()
+        print()
+        print("Any time you want to see this information type 1 for your score or 2 for plant list.")
+        print()
+        if plant_points > 49:
+            print ("Congratulations, you have a beautiful plant collection and you won the game and at life!! Now go relax in your indoor jungle!")
+            break
+        if heart_points < 1:
+            print ("The trials of the plant parenthood have just been too much for you. You have given up your collecting adventure and you have lost the game.")
+            break
+        if money < 1 and plant_points < 20:
+            print ("You have run out of money and have no way to get more. Your plant collecting adventures are over and you have lost the game.")
+            break
+        else:
+            print("What would you like to do? [B]uy, [S]ell, [T]rade or [Q]uit")
+            decision = input("> ").upper()
+            time.sleep(2)
             print()
-            print("Sorry. That is not a valid answer.")
-            print()
+            if decision.startswith("Q"):
+                print()
+                print("Thank you for visiting. Have a nice day.")
+                break
+            elif decision.startswith("B"):
+                buy_adventures()
+            elif decision.startswith("S"):
+                sell_adventures()
+            elif decision.startswith("T"):
+                trade_adventures()
+            elif decision == "1":
+                score()
+                print()
+            elif decision == "2":
+                jungle()
+                print()
+            else:
+                print()
+                print("Sorry. That is not a valid answer.")
+                print()
+play_game()
