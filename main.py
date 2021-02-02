@@ -1,7 +1,5 @@
 #This is a text adventure game about shopping for plants in the current market with all the thrills of creating a beautiful collection and watching it grow along with the dangers of inflated prices, bad actors, pests and more. It's Tulip Mania for the 21st Century.
 import random
-#create a list of possible plants
-#create dictionaries of plants, what they cost and what they are worth
 import time
 #variables that get reused throughout the program
 money = 1000
@@ -58,16 +56,16 @@ def sort_plants_by_worth(plants):
     return cheap_plants, moderate_plants, pricey_plants, ridiculous_plants
 def reserve_checker(base, lower_limit):
     pass
-    
-
 #function that runs the mechanics of the auction
 def auction(base, lower_limit):
-    number_of_bids = [1, 5, 7, 9, 10, 12, 14]
+    global money
+    global plant_points
+    number_of_bids = [1, 5, 7, 8, 9, 10, 11, 12, 14]
     length_of_auction = random.choice(number_of_bids)
     bids = 0
     reserve_met = False
     while bids < length_of_auction:
-        bid_increase = [5, 10]
+        bid_increase = [1, 5, 5, 10]
         bid_timer = [1,2]
         print("...")
         print()
@@ -82,33 +80,36 @@ def auction(base, lower_limit):
             else:
                 break
         bids += 1
-        print ("Going once...")
-        time.sleep(2)
-        print ()
-        print ("Going twice...")
-        time.sleep(2)
-        print ()
-        print ("SOLD")
-        time.sleep(2)
-        print ()
-    print("The auction has ended.")
+    print ("Going once...")
+    time.sleep(2)
+    print ()
+    print ("Going twice...")
+    time.sleep(2)
+    print ()
+    print ("*gavel*")
     print()    
     if base < lower_limit:
-        print("The reserv was not met. This plant does not sell.")
+        print("The auction has ended.")
+        print()
+        time.sleep(1)
+        print("The reserve was not met. This plant does not sell.")
+        print()
+        sell = False
     elif base >= lower_limit:
+        print("SOLD")
+        time.sleep(1)
         print(f"Your plant has sold for {base}. Your cash increases and your plant points decrease.")
-    return base
-
-
-
-        
-
-#the silly intro
+        print()
+        sell = True
+        money += base
+        plant_points -= 2
+    return sell
+#the silly intro function, explains the game premise
 def intro():
     print("Welcome to Plant Parenthood Marketplace: A place to buy sell and trade tropical plants.")
     time.sleep(1)
     print()
-    print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \n\nTo do so you will start with $1000 and 10 heart points. \n\nYou will need to reach 500 plant points to win. \n\nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \n\nIf you lose all of your heart points, you give up collecting and \nlose the game.")
+    print("Your goal is to build a beautiful collection of healthy plants to create your indoor jungle. \n\nTo do so you will start with $1000 and 10 heart points. \n\nYou will need to reach 50 plant points to win. \n\nBeware of the dangers of the marketplace that can cause you to lose\nmoney and heart points. \n\nIf you lose all of your heart points, you give up collecting and \nlose the game.")
     time.sleep(3)
     print()
     decision = input("Are you ready to make a jungle? > ").upper()
@@ -120,12 +121,12 @@ def intro():
         print()
         print("Great! Lets go!")
         print()
-#function pass on any given deal
+#function used pass on any given deal
 def pass_on_deal():
     print("You have passed on this deal.")
     print()
     time.sleep(1)
-#the next functional are all buying scenarios and are the bulk of the text for the game
+#the next functions are all buying scenarios and are the bulk of the text for the game
 def buy_a():
     global money
     global heart_points
@@ -151,7 +152,7 @@ def buy_a():
             print()
             time.sleep(1)
             money = money + 800
-            plant_points = plant_points + 10
+            plant_points = plant_points + 2
             your_plants["philodendron pink princess"]= available_plants["philodendron pink princess"]
     else:
         pass_on_deal()
@@ -191,7 +192,7 @@ def buy_c():
             print("You bought the rooted philodendron gloriosum node for $40. It grew well and is a beautiful healthy plant now worth $200.")
             print()
             time.sleep(1)
-            plant_points = plant_points + 10
+            plant_points = plant_points + 2
             money = money - 40
             heart_points = heart_points + 2
             your_plants["philodendron gloriosum"] = available_plants["philodendron gloriosum"]
@@ -201,8 +202,8 @@ def buy_c():
             time.sleep(1)
             money = money - 40
             heart_points = heart_points - 2
-        else:
-            pass_on_deal()
+    else:
+        pass_on_deal()
 def buy_d():
     global money
     global heart_points
@@ -242,7 +243,7 @@ def buy_e():
             print()
             time.sleep(1)
             money = money - 35
-            plant_points = plant_points + 8
+            plant_points = plant_points + 2
             your_plants["philodendron Florida ghost"] = available_plants["philodendron Florida ghost"]
         elif purge_luck == 3:
             print("You got caught up in the moment and spoke for a plant without looking at the price, and to your surprise, you won. Although most of the offings were under $100, this one was $150! Nonetheless, you are the proud owner of a beautiful philodendron gigas worth $200. You gain 10 plant points, but you lose 2 heart points, because you blew your budget.")
@@ -259,9 +260,86 @@ def buy_e():
             time.sleep(1)
     else:
         pass_on_deal()
+def buy_f():
+    global money
+    global heart_points
+    global plant_points
+    print("Weekend Wishlist!! The weekend wishlist thread invites you to list a plant that you're looking for. People who have that plant to sell can offer it to you. You state that you are looking for an anthurium vittarifolium. A beautiful, strappy-leaved anthurium that is tolerant of lower humidity. The only response is from someone who has seedlings. Affordable, but chancy. She willing to sell you two for $35.")
+    print()
+    time.sleep(1)
+    decision = input("[D]eal or [P]ass? > ").upper()
+    print()
+    time.sleep(1)
+    if decision.startswith("D"):
+        seedling_luck = random.randint(1, 3)
+        if seedling_luck == 1:
+            print("Good fortune. It took time, patience and investment of $100 in grow equipment, but you were able to get both seedlings to grow into mature plants. You kept one and sold one for $300. Total financial gain is $165. You gain 4 plant points and 2 heart point, because you learned so much!")
+            money += 165
+            heart_points += 2
+            plant_points += 4
+            your_plants["anthurium vittarifolium"] = available_plants["anthurium vittarifolium"]
+        elif seedling_luck == 2:
+            print("You win some you lose some. You weren't prepared for the needs of these fragile seedlings, but you made do. One got light stressed and died. The other one took a long time, but eventually thrived. You gain 2 heart points for learning so much and 2 plant points.")
+            money -= 35
+            heart_points += 2
+            plant_points += 2
+            your_plants["anthurium vittarifolium"] = available_plants["anthurium vittarifolium"]
+        elif seedling_luck == 3:
+            print("Bad luck. You tried, but you were unprepared to properly care for these fragile seedlings. Good think you didn't risk a lot of money. Better luck next time. You lose 2 heart points.")
+            money -= 35
+            heart_points -= 2
+    else:
+        pass_on_deal()
+def buy_g():
+    global money
+    global heart_points
+    global plant_points
+    print("~Plant Therapy~ A member of a local plant group is hosting a friendly sow and grow competition. She has a limited number of anthurium warocqueanum seeds. If you want to participate, you can buy up to 3 seeds for $35 a piece. Are you interested?")
+    print()
+    time.sleep(1)
+    decision = input("[D]eal or [P]ass? > ").upper()
+    print()
+    time.sleep(1)
+    if decision.startswith("D"):
+        num_seeds = 0
+        while True:    
+            num_seeds = int(input("How many seeds would you like: > "))
+            print()
+            time.sleep(1)
+            available_seeds = [1, 2, 3]
+            if num_seeds in available_seeds:
+                print(f"You have purchased {num_seeds} for ${num_seeds * 35}. Best of luck.")
+                print()
+                time.sleep(2)
+                break
+            else:
+                print("There is a limit of 3 seeds per person. Please choose again.")
+                print()
+        seed_luck = random.randint(1, num_seeds)
+        if seed_luck == 1:
+            print ("Strong work. You managed to raise one seedling into a healthy plant. An anthurium warocqueanum worth $400 is added to your collection. You gain 2 plant points and 2 heart points, because it was a sweet learning experience to share with the community.")
+            print()
+            money -= 35 * num_seeds
+            heart_points += 2
+            plant_points += 2
+            your_plants["anthurium warocqueanum"] = available_plants["anthurium warocqueanum"]
+        elif seed_luck == 2:
+            print("Only one of your seedlings survived, but you learned a lot, and gained some confidence that will help you in your next seedling adventure. One anthurium warocqueanum is added to your collection, and you gain 2 heart points and 2 plant points, because it was a sweet experience to share with the community.")
+            print()
+            money -= 35 * num_seeds
+            heart_points += 2
+            plant_points += 2
+            your_plants["anthurium warocqueanum"] = available_plants["anthurium warocqueanum"]
+        elif seed_luck == 3:
+            print ("Bad luck. Your seeds sprouted but never produced any leaves and eventually rotted. But you learned a lot and increased your confidence and had a sweet experience with the community. Gain 2 heart points.")
+            print()
+            money -= 35 * num_seeds
+            heart_points += 2
+    else:
+        pass_on_deal()
 #this function calls for a random buying scenario
 def buy_adventures():
-    buying_scenario = [buy_a, buy_b, buy_c, buy_d, buy_e]
+    buying_scenario = [buy_a, buy_b, buy_c, buy_d, buy_e, buy_f, buy_g]
     print("Here is your buying adventure:\n\n")
     random.choice(buying_scenario)()
 #this function handles the very complicated trading mechanics and probably should have been broken out into more functions
@@ -314,10 +392,10 @@ def trade_adventures():
             elif random.choice(trade_badluck) == 3:
                 print("Unlucky. The plant you traded for had clearly been cut and used as a mother. You are able to grow it into a beautiful plant, but it was a lot more of a project than you bargained for, and it makes you sad. Lose 2 heart points.")
                 heart_points -= 2
-    elif decision.startswith("P"):
+    else:
         pass_on_deal()
         print()
-
+#this fucntion handles the main sell functions, and calls the auction function, it could still be a lot simpler
 def sell_adventures():
     global heart_points
     global money
@@ -345,10 +423,9 @@ def sell_adventures():
                 time.sleep(1)
                 print ("Bidding starts.")
                 time.sleep(1)
-                sale_price = auction(opening_bid, reserve)
-                money += sale_price
-                plant_points -= 2
-                del(your_plants[listed_plants[your_offer]["name"]])
+                sell = auction(opening_bid, reserve)
+                if sell == True:                
+                    del(your_plants[listed_plants[your_offer]["name"]])
             else:
                 print (f"You sold your {listed_plants[your_offer]['name']}for ${listed_plants[your_offer]['worth']}")
         else:
