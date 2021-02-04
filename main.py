@@ -54,18 +54,17 @@ def sort_plants_by_worth(plants):
         elif plant_data["worth"] >= 150:
             ridiculous_plants[plant] = plant_data
     return cheap_plants, moderate_plants, pricey_plants, ridiculous_plants
-def reserve_checker(base, lower_limit):
-    pass
+
 #function that runs the mechanics of the auction
 def auction(base, lower_limit):
     global money
     global plant_points
-    number_of_bids = [1, 5, 7, 8, 9, 10, 11, 12, 14]
+    number_of_bids = [1, 2, 5, 7, 8, 9, 10, 11, 12, 14]
     length_of_auction = random.choice(number_of_bids)
     bids = 0
     reserve_met = False
     while bids < length_of_auction:
-        bid_increase = [1, 5, 5, 10]
+        bid_increase = [1, 5, 10, 10]
         bid_timer = [1,2]
         print("...")
         print()
@@ -75,7 +74,7 @@ def auction(base, lower_limit):
         base = base + random.choice(bid_increase)
         while reserve_met == False:
             if base >= lower_limit:
-                print("The reserve has been met. This plant will sell.")
+                print("The reserve has been met! This plant will sell!")
                 reserve_met = True
             else:
                 break
@@ -96,9 +95,10 @@ def auction(base, lower_limit):
         print()
         sell = False
     elif base >= lower_limit:
-        print("SOLD")
+        print("SOLD!!!")
+        print()
         time.sleep(1)
-        print(f"Your plant has sold for {base}. Your cash increases and your plant points decrease.")
+        print(f"Your plant has sold for ${base}. Your cash increases and your plant points decrease.")
         print()
         sell = True
         money += base
@@ -407,7 +407,7 @@ def sell_adventures():
         for number, info in listed_plants.items():
             print(f"{number} {info['name']} worth ${info['worth']}")
         print()
-        your_offer = int(input("Choose a plant by number to offer for sale.\nIf you choose a more valuable plant you may choose offer it in an auction: > "))
+        your_offer = int(input("Choose a plant by number to offer for sale.\nIf you choose a more valuable plant you may \nchoose offer it in an auction: > "))
         print()
         print (f"You want to sell your {listed_plants[your_offer]['name']} worth ${listed_plants[your_offer]['worth']}")
         print()
@@ -415,12 +415,12 @@ def sell_adventures():
             auction_decision = input("Would you like to auction? Y/N > ").upper()
             print()
             if auction_decision == "Y":
-                opening_bid = int(listed_plants[your_offer]['worth'] * 0.80)
+                opening_bid = int(listed_plants[your_offer]['worth'] * 0.85)
                 reserve = listed_plants[your_offer]['worth']
                 print()
                 print(f"The auction starts with an opening bid of ${opening_bid} and a reserve of ${reserve}.")
                 print()
-                time.sleep(1)
+                time.sleep(3)
                 print ("Bidding starts.")
                 time.sleep(1)
                 sell = auction(opening_bid, reserve)
